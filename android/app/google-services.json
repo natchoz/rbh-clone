@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "473024282886",
+    "project_id": "robinhood-clone-82d4d",
+    "storage_bucket": "robinhood-clone-82d4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473024282886:android:fb02f361d0621513b59e87",
+        "android_client_info": {
+          "package_name": "com.natcho.robinhood_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473024282886-m2tksk99l052kjn5k6uv6ob1dtks2vh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZZxf_GqI0A-5pP88v1h_7uQLUDbdti7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473024282886-m2tksk99l052kjn5k6uv6ob1dtks2vh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
