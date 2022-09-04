@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:robinhood_clone/common/app_image.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -16,72 +17,81 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void _onConfirmPhoneNumberTab(BuildContext context) async {}
 
-@override
+  @override
   void initState() {
     super.initState();
     _phoneController = TextEditingController();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildLogo(),
-            _buildTitle(),
-            _buildDescription(),
-            _buildPhoneNumberInput(),
-            _buildNextButton(),
-          ],
-        ),
+        body: Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Spacer(),
+          _buildLogo(),
+          _buildTitle(),
+          _buildDescription(),
+          _buildPhoneNumberInput(),
+          const Spacer(
+            flex: 2,
+          ),
+          _buildNextButton(),
+        ],
       ),
-    );
+    ));
   }
 
-  Widget _buildLogo() => Container(
-        margin: EdgeInsets.only(left: 50),
-        child: Image.asset(
-          AppImage.robinhoodLogo,
+  Widget _buildLogo() => SizedBox(
+        width: 200.w,
+        height: 100.w,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Image.asset(
+            AppImage.robinhoodLogo,
+            fit: BoxFit.contain,
+          ),
         ),
       );
 
-  Widget _buildTitle() => Container(
-        child: Column(
-          children: const [
-            Text(
-              "Robinhood ยินดีต้อนรับ",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w400,
-              ),
+  Widget _buildTitle() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            "Robinhood ยินดีต้อนรับ",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w400,
             ),
-          ],
-        ),
+          ),
+        ],
       );
 
-  Widget _buildDescription() => Container(
-        child: Column(
-          children: const [
-            Text(
-              "กรุณาใส่เบอร์มือถือของคุณเพื่อดำเนินการต่อ",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
+  Widget _buildDescription() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text(
+            "กรุณาใส่เบอร์มือถือของคุณเพื่อดำเนินการต่อ",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
             ),
-            Text(
-              "*ระบบรองรับเบอร์มือถือที่ลงทะเบียนในประเทศไทยเท่านั้น",
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-              ),
+          ),
+          Text(
+            "*ระบบรองรับเบอร์มือถือที่ลงทะเบียนในประเทศไทยเท่านั้น",
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
             ),
-          ],
-        ),
+          ),
+        ],
       );
 
   Widget _buildPhoneNumberInput() => Container(
+        padding: EdgeInsets.only(top: 48.w),
         color: Colors.white,
         width: double.infinity,
         child: TextFormField(
@@ -91,23 +101,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           },
           keyboardType: TextInputType.phone,
           decoration: InputDecoration(
-            // icon: Image.asset(
-            //   AppImage.iconPhone,
-            //   width: 24.w,
-            //   height: 24.w,
-            //   fit: BoxFit.contain,
-            // ),
-            labelText: 'เบอร์โทรศัพท์',
+            labelText: 'ใส่เบอร์มือถือ',
             labelStyle: TextStyle(
-              fontSize: 16,
+              fontSize: 16.sp,
               color: Colors.blueGrey,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
           ),
         ),
       );
 
   Widget _buildNextButton() => Container(
-        margin: EdgeInsets.only(bottom: 50),
+        margin: EdgeInsets.only(bottom: 50.w),
         height: 60.w,
         width: MediaQuery.of(context).size.width,
         child: ElevatedButton(
@@ -115,14 +122,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ? () => _onConfirmPhoneNumberTab(context)
               : null,
           style: ElevatedButton.styleFrom(
-            primary: Colors.grey,
+            primary: Colors.purple,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
           child: const Text(
-            'ยืนยันเบอร์โทรศัพท์',
+            'ถัดไป',
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: FontWeight.normal,
             ),
           ),

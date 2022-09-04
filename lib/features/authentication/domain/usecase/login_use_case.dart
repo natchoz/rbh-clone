@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignInUseCase {
-  SignInUseCase({
+class LoginUseCase {
+  LoginUseCase({
     required this.firebaseAuth,
   });
 
   final FirebaseAuth firebaseAuth;
   late String _verificationId;
 
-  Future<void> signInByPhoneNumber(String phoneNumber) async {
+  Future<void> loginByPhoneNumber(String phoneNumber) async {
     firebaseAuth.verifyPhoneNumber(
         phoneNumber: _formatPhoneNumber(phoneNumber),
         codeAutoRetrievalTimeout: _autoRetrieve,

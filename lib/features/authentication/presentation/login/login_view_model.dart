@@ -1,13 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:robinhood_clone/features/authentication/domain/usecase/sign_in_use_case.dart';
+import 'package:robinhood_clone/features/authentication/domain/usecase/login_use_case.dart';
 import 'package:robinhood_clone/features/authentication/presentation/login/login_state.dart';
 
 class LoginViewModel extends StateNotifier<LoginState> {
-  LoginViewModel({required this.signInUseCase})
+  LoginViewModel({required this.loginUseCase})
       : super(LoginState.idle);
 
-  final SignInUseCase signInUseCase;
+  final LoginUseCase loginUseCase;
   
-  Future<void> signInByPhoneNumber(String phoneNumber) async {}
+  Future<void> loginByPhoneNumber(String phoneNumber) async {}
 }
