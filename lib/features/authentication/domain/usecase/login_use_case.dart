@@ -1,11 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final loginUseCaseProvider = Provider((ref) {
+  return LoginUseCase(
+    FirebaseAuth.instance,
+  );
+});
 
 class LoginUseCase {
-  LoginUseCase({
-    required this.firebaseAuth,
-  });
+  LoginUseCase(
+    this._firebaseAuth,
+  );
 
-  final FirebaseAuth firebaseAuth;
+  final FirebaseAuth _firebaseAuth;
   late String _verificationId;
 
   Future<void> loginByPhoneNumber(String phoneNumber) async {

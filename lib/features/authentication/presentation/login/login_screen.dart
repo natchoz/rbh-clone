@@ -15,7 +15,7 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   late TextEditingController _phoneController;
 
-  void _onConfirmPhoneNumberTab(BuildContext context) async {}
+  void _onConfirmPhoneNumber(BuildContext context) async {}
 
   @override
   void initState() {
@@ -119,7 +119,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         width: MediaQuery.of(context).size.width,
         child: ElevatedButton(
           onPressed: (_phoneController.text.isNotEmpty)
-              ? () => _onConfirmPhoneNumberTab(context)
+              ? () => _onConfirmPhoneNumber(context)
               : null,
           style: ElevatedButton.styleFrom(
             primary: Colors.purple,
