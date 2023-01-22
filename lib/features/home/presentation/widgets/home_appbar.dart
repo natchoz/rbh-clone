@@ -36,21 +36,28 @@ class HomeAppBar extends SliverPersistentHeaderDelegate {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Hello',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 25,
-          ),
+        Row(
+          children: [
+            Text(
+              'สวัสดี',
+              style: TextStyle(
+                color: Colors.purple,
+                fontSize: 25,
+              ),
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Text(
+              'โรบิน',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            ),
+          ],
         ),
-        Text(
-          'User',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 25,
-          ),
-        ),
-
       ],
     );
   }

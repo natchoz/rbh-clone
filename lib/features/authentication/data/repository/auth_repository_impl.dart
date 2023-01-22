@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:robinhood_clone/features/authentication/domain/usecase/repository/auth_repository.dart';
+import 'package:robinhood_clone/features/authentication/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(

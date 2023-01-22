@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:robinhood_clone/common/app_image.dart';
+import 'package:robinhood_clone/features/food/presentation/food_page.dart';
 import 'package:robinhood_clone/features/home/presentation/widgets/home_appbar.dart';
 import 'package:robinhood_clone/features/home/presentation/widgets/home_menu.dart';
 
@@ -11,6 +14,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: Colors.white,
       // body: NestedScrollView(
       //     headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
       //       return [
@@ -31,14 +35,18 @@ class HomePage extends ConsumerWidget {
           // ),
 
           SliverPadding(
-            padding: const EdgeInsets.fromLTRB(32, 64, 32, 32),
+            padding: const EdgeInsets.fromLTRB(16, 64, 16, 32),
             sliver: SliverPersistentHeader(
               delegate: HomeAppBar(),
               pinned: false,
               floating: false,
             ),
           ),
-          _buildHomeMenus(),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            sliver: _buildHomeMenus(context),
+          ),
+          // _buildHomeMenus(),
           // SliverList(
           //     delegate: SliverChildBuilderDelegate(
           //   (context, index) => _buildHomeMenus(),
@@ -49,40 +57,49 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildHomeMenus() => SliverGrid.count(
+  Widget _buildHomeMenus(BuildContext context) => SliverGrid.count(
         crossAxisCount: 2,
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,
         children: [
           HomeMenu(
+            image: AppImage.foodMenu,
             category: 'FOOD',
-            title: 'What are you craving...',
-            description: 'Time to EAT',
+            menu: 'กินข้าวกัน',
+            title: 'หิวแล้ว หาอะไรกินไหม',
+            description: 'มีครบทุกอย่างที่อยากกิน',
             isComingSoon: false,
             onTap: () {
               debugPrint('FOOD on clicked!');
+              context.push(FoodPage.routeName);
             },
           ),
           HomeMenu(
+            image: AppImage.travelMenu,
             category: 'TRAVEL',
-            title: 'Time to travel',
-            description: 'Hotels Flights Car Rental...',
+            menu: 'เที่ยวกัน',
+            title: 'รู้นะ อยากไปเที่ยวแล้วใช่ไหม',
+            description: 'ที่พัก ตั๋วเครื่องเบิน รถเช่า ทัวร์',
             onTap: () {
               debugPrint('TRAVEL on clicked!');
             },
           ),
           HomeMenu(
+            image: AppImage.martMenu,
             category: 'MART',
-            title: 'Fresh to your doorst...',
-            description: 'Wide-rande of premium...',
+            menu: 'ซื้อของกัน',
+            title: 'อยากได้อะไรไหม ไปช้อปกัน',
+            description: 'ช้อปจากร้านและซูเปอร์ชั้นนำ.',
             onTap: () {
               debugPrint('MART on clicked!');
             },
           ),
           HomeMenu(
+            image: AppImage.expressMenu,
             category: 'EXPRESS',
-            title: 'Speedy Delivery',
-            description: 'Send a parcel and Mess...',
+            menu: 'ส่งของกัน',
+            title: 'ส่งของเร็วทันใจ',
+            description: 'ไรเดอร์พร้อมบริการ',
             onTap: () {
               debugPrint('EXPRESS on clicked!');
             },

@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:robinhood_clone/common/app_image.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({
+class LoginPage extends ConsumerStatefulWidget {
+  const LoginPage({
     super.key,
   });
 
@@ -12,7 +12,7 @@ class LoginScreen extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginPage> {
   late TextEditingController _phoneController;
 
   void _onConfirmPhoneNumber(BuildContext context) async {}

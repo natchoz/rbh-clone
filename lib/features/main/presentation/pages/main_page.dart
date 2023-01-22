@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:robinhood_clone/features/home/presentation/pages/home/home_page.dart';
+import 'package:robinhood_clone/features/home/presentation/home_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

@@ -16,7 +16,7 @@ class LoginUseCase {
   late String _verificationId;
 
   Future<void> loginByPhoneNumber(String phoneNumber) async {
-    firebaseAuth.verifyPhoneNumber(
+    _firebaseAuth.verifyPhoneNumber(
         phoneNumber: _formatPhoneNumber(phoneNumber),
         codeAutoRetrievalTimeout: _autoRetrieve,
         codeSent: _smsCodeSent,

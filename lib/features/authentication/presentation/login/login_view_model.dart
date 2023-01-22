@@ -12,7 +12,7 @@ class LoginViewModel extends StateNotifier<LoginState> {
 
   final LoginUseCase loginUseCase;
 
-  Future<void> loginByPhoneNumber(String phoneNumber) async {
-    loginUseCase
-  }
+  // Future<void> loginByPhoneNumber(String phoneNumber) async {
+  //   loginUseCase
+  // }
 }

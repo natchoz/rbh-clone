@@ -39,7 +39,8 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:robinhood_clone/features/authentication/presentation/login/login_screen.dart';
+import 'package:robinhood_clone/features/authentication/presentation/login/login_page.dart';
+import 'package:robinhood_clone/features/food/presentation/food_page.dart';
 import 'package:robinhood_clone/features/main/presentation/pages/main_page.dart';
 
 enum AppRoute { login, main, home }
@@ -50,7 +51,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       redirect: (state) {
         print("### GoRouter ###");
         // TODO complete this logic
-        final isLoggedIn = false;
+        final isLoggedIn = true;
 
         if (isLoggedIn) {
           if (state.location == '/login') {
@@ -70,7 +71,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ),
         GoRoute(
           path: '/login',
-          builder: (context, state) => const LoginScreen(),
+          builder: (context, state) => const LoginPage(),
+        ),
+        GoRoute(
+          path: '/food',
+          builder: (context, state) => const FoodPage(),
         ),
       ]);
 });

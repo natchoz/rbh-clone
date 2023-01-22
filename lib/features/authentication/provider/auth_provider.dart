@@ -9,7 +9,7 @@ final firebaseAuthProvider =
 
 final loginUseCaseProvider = Provider<LoginUseCase>((ref) {
   final firebaseAuth = ref.watch(firebaseAuthProvider);
-  return LoginUseCase(firebaseAuth: firebaseAuth);
+  return LoginUseCase(firebaseAuth);
 });
 
 final loginProvider = StateNotifierProvider<LoginViewModel, LoginState>((ref) {
