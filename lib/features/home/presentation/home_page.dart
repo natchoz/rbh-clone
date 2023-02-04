@@ -1,39 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:rbh_food/features/home/presentation/food_home_page.dart';
 import 'package:robinhood_clone/common/app_image.dart';
-import 'package:robinhood_clone/features/food/presentation/food_page.dart';
 import 'package:robinhood_clone/features/home/presentation/widgets/home_appbar.dart';
 import 'package:robinhood_clone/features/home/presentation/widgets/home_menu.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   static const String routeName = "/home";
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // body: NestedScrollView(
-      //     headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-      //       return [
-      //         HomeAppBar(),
-      //       ];
-      //     },
-      //     body: _buildHomeMenus(),
-      //     ),
       body: CustomScrollView(
         slivers: <Widget>[
-          // SliverAppBar(
-          //   expandedHeight: 200,
-          //   floating: false,
-          //   pinned: true,
-          //   flexibleSpace: FlexibleSpaceBar(
-          //     title: Text('data'),
-          //   ),
-          // ),
-
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 64, 16, 32),
             sliver: SliverPersistentHeader(
@@ -46,12 +28,6 @@ class HomePage extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             sliver: _buildHomeMenus(context),
           ),
-          // _buildHomeMenus(),
-          // SliverList(
-          //     delegate: SliverChildBuilderDelegate(
-          //   (context, index) => _buildHomeMenus(),
-          //   childCount: 1,
-          // ))
         ],
       ),
     );
@@ -71,7 +47,7 @@ class HomePage extends ConsumerWidget {
             isComingSoon: false,
             onTap: () {
               debugPrint('FOOD on clicked!');
-              context.push(FoodPage.routeName);
+              Modular.to.pushNamed(FoodHomePage.routeName);
             },
           ),
           HomeMenu(

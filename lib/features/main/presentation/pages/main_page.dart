@@ -15,16 +15,21 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _navigationItems = [
     const HomePage(),
-    const HomePage(),
-    const HomePage(),
-    const HomePage(),
-    const HomePage(),
+    const Text('รายการโปรด'),
+    const Text('กิจกรรม'),
+    const Text('ข้อความ'),
+    const Text('บัญชี'),
   ];
 
   void _onNavigationTap(int index) {
     setState(() {
       _currentIndex = index;
     });
+    // if (index == 0) {
+    //   Modular.to.navigate('/');
+    // } else if (index == 1) {
+    //   Modular.to.navigate('/favorites');
+    // }
   }
 
   @override
@@ -32,7 +37,8 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: [_navigationItems[_currentIndex]],
+        children: _navigationItems,
+        
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [

@@ -33,14 +33,20 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  flutter_riverpod: ^1.0.3
-  flutter_screenutil: ^5.5.4
-  auto_route: ^3.2.3+1
+  # flutter_riverpod: ^1.0.3
+  # flutter_screenutil: ^5.5.4
+  # auto_route: ^3.2.3+1
   # firebase_core: ^0.5.3
   # firebase_auth: ^0.18.4+1
   # firebase_messaging: ^7.0.3
-  # dependencies:
-  #   path: dependencies
+  core:
+    path: packages/core
+
+  dependencies:
+    path: packages/dependencies
+
+  rbh_food:
+    path: packages/rbh_food
 
   # main:
   #   path: features/main
@@ -64,7 +70,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  auto_route_generator: ^3.2.3
+  # auto_route_generator: ^3.2.3
   build_runner: ^2.1.7
 
   # The "flutter_lints" package below contains a set of recommended lints to

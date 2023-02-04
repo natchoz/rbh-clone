@@ -1,0 +1,85 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "robinhood-clone",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "robinhood-clone (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "robinhood-clone (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "core",
+            "cwd": "packages/core",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "core (profile mode)",
+            "cwd": "packages/core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "core (release mode)",
+            "cwd": "packages/core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "dependencies",
+            "cwd": "packages/dependencies",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "dependencies (profile mode)",
+            "cwd": "packages/dependencies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "dependencies (release mode)",
+            "cwd": "packages/dependencies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "rbh_food",
+            "cwd": "packages/rbh_food",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "rbh_food (profile mode)",
+            "cwd": "packages/rbh_food",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "rbh_food (release mode)",
+            "cwd": "packages/rbh_food",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
