@@ -1,4 +1,4 @@
-import 'package:rbh_food/features/home/domain/entities/restaurant.dart';
+import 'package:rbh_food/features/home/domain/entities/home_restaurant.dart';
 
 class RestaurantCategory {
   RestaurantCategory({
@@ -6,6 +6,6 @@ class RestaurantCategory {
     required this.bestChineseRestaurants,
   });
 
-  final List<Restaurant> recommendedRestaurants;
-  final List<Restaurant> bestChineseRestaurants;
+  final List<HomeRestaurant> recommendedRestaurants;
+  final List<HomeRestaurant> bestChineseRestaurants;
 }

@@ -1,15 +1,15 @@
 import 'package:core/error/failure.dart';
 import 'package:flutter/services.dart';
 import 'package:rbh_food/features/home/data/api/food_api.dart';
-import 'package:rbh_food/features/home/data/mapper/restaruant_category_mapper.dart';
-import 'package:rbh_food/features/home/domain/entities/restaurant.dart';
+import 'package:rbh_food/features/home/data/mapper/home_restaruant_category_mapper.dart';
+import 'package:rbh_food/features/home/domain/entities/home_restaurant.dart';
 import 'package:rbh_food/features/home/domain/entities/restaurant_category.dart';
-import 'package:rbh_food/features/home/domain/repositories/food_repository.dart';
+import 'package:rbh_food/features/home/domain/repositories/food_home_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 
-class RestaruantRepositoryImpl implements RestaurantRepository {
-  RestaruantRepositoryImpl(this._foodApi, this._restaruntCategoryMapper);
+class FoodHomeRepositoryImpl implements FoodHomeRepository {
+  FoodHomeRepositoryImpl(this._foodApi, this._restaruntCategoryMapper);
 
   final FoodApi _foodApi;
   final RestaruntCategoryMapper _restaruntCategoryMapper;
@@ -17,7 +17,7 @@ class RestaruantRepositoryImpl implements RestaurantRepository {
   @override
   Future<Either<Failure, RestaurantCategory>> getRestaurantCategory() async {
     try {
-      final response = await _foodApi.getRestaruntCategory();
+      final response = await _foodApi.getHomeRestaurantCategories();
       return Right(_restaruntCategoryMapper.mapDtoToEntity(response));
 
       // final response = await _foodApi.getRestaruntCategory2();

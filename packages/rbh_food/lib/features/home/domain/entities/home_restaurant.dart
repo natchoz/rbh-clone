@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class Restaurant extends Equatable {
-  const Restaurant({
+class HomeRestaurant extends Equatable {
+  const HomeRestaurant({
     required this.id,
     required this.name,
     this.description,
@@ -13,7 +13,7 @@ class Restaurant extends Equatable {
     required this.categoryMenus,
   });
 
-  final int id;
+  final String id;
   final String name;
   final String? description;
   final String? imageUrl;

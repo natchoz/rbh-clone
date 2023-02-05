@@ -19,13 +19,13 @@ class _FoodApi implements FoodApi {
   String? baseUrl;
 
   @override
-  Future<GetRestaurantCategoryResponse> getRestaruntCategory() async {
+  Future<GetHomeRestaurantsResponse> getHomeRestaurantCategories() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetRestaurantCategoryResponse>(Options(
+        _setStreamType<GetHomeRestaurantsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -37,7 +37,7 @@ class _FoodApi implements FoodApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetRestaurantCategoryResponse.fromJson(_result.data!);
+    final value = GetHomeRestaurantsResponse.fromJson(_result.data!);
     return value;
   }
 

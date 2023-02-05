@@ -1,0 +1,86 @@
+{
+  "recommended_restaurants": [
+    {
+      "id": "1",
+      "name": "Shinkanzen sushi",
+      "description": "",
+      "image_url": "https://raw.githubusercontent.com/natchoz/rbh-api/main/images/shinkanzensushi_logo.jpeg",
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "2",
+      "name": "Mycafe at room",
+      "description": "มีเมนูครอฟเฟิล และอาหารอิ่มท้อง",
+      "image_url": "",
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "3",
+      "name": "R-Liu กาแฟสด",
+      "description": "กาแฟสด รสชาติดี ราคาถูกใจ",
+      "image_url": "https://images.pexels.com/photos/1235706/pexels-photo-1235706.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "4",
+      "name": "คาลิโค่ พรีเมี่ยม คอฟฟี่",
+      "description": "ร้านกาแฟสด ที่คัดเกรดวัตถุดิบ โดยคำนึงถึงสุขภาพ",
+      "image_url": "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg",
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "5",
+      "name": "ครัวคุณปุ๋ม",
+      "description": "",
+      "image_url": "",
+      "category_menus": ["Recommended", "Popular"]
+    }
+  ],
+  "best_chinese_restaurants": [
+    {
+      "id": "6",
+      "name": "เอ็มเค บิ๊กซี สุขาภิบาล 5",
+      "description": "",
+      "image_url": "",
+      "distance": "13.2 km.",
+      "rating": 4.7,
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "7",
+      "name": "เอ็มเค SF นวมินทร์ ซิี้อเวนิว",
+      "description": "",
+      "image_url": "",
+      "distance": "16.0 km.",
+      "rating": 4.6,
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "8",
+      "name": "เป็ดย่างบางกะปิ",
+      "description": "",
+      "image_url": "",
+      "distance": "23.6 km.",
+      "rating": 4.7,
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "9",
+      "name": "Jones'salad สาขาลิวิลล่า",
+      "description": "",
+      "image_url": "",
+      "distance": "24.8 km.",
+      "rating": 4.9,
+      "category_menus": ["Recommended", "Popular"]
+    },
+    {
+      "id": "10",
+      "name": "ราดหน้านพดล เพชรบุรีซอย 5",
+      "description": "",
+      "image_url": "",
+      "distance": "25.5 km.",
+      "rating": 4.3,
+      "category_menus": ["Recommended", "Popular"]
+    }
+  ]
+}

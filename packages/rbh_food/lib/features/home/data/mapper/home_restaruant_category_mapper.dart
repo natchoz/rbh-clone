@@ -1,13 +1,13 @@
-import 'package:rbh_food/features/home/data/dto/get_restaurant_category_response.dart';
-import 'package:rbh_food/features/home/domain/entities/restaurant.dart';
+import 'package:rbh_food/features/home/data/dto/get_home_restaurants_response.dart';
+import 'package:rbh_food/features/home/domain/entities/home_restaurant.dart';
 import 'package:rbh_food/features/home/domain/entities/restaurant_category.dart';
 
 class RestaruntCategoryMapper {
-  RestaurantCategory mapDtoToEntity(GetRestaurantCategoryResponse response) =>
+  RestaurantCategory mapDtoToEntity(GetHomeRestaurantsResponse response) =>
       RestaurantCategory(
         recommendedRestaurants: response.recommendedRestaurants
             .map(
-              (data) => Restaurant(
+              (data) => HomeRestaurant(
                 id: data.id,
                 name: data.name,
                 description: data.description,
@@ -20,7 +20,7 @@ class RestaruntCategoryMapper {
             .toList(),
         bestChineseRestaurants: response.bestChineseRestaurants
             .map(
-              (data) => Restaurant(
+              (data) => HomeRestaurant(
                 id: data.id,
                 name: data.name,
                 description: data.description,

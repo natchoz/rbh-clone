@@ -1,7 +1,7 @@
 import 'package:rbh_food/features/restaurant/domain/entities/menu.dart';
 
-class Category {
-  const Category({
+class CategoryMenu {
+  const CategoryMenu({
     required this.id,
     required this.name,
     required this.menus,

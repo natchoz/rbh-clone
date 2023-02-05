@@ -1,20 +1,19 @@
 import 'package:core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:rbh_food/features/home/domain/entities/restaurant_category.dart';
-import 'package:rbh_food/features/home/domain/repositories/food_repository.dart';
 import 'package:rbh_food/features/restaurant/domain/entities/restaurant.dart';
+import 'package:rbh_food/features/restaurant/domain/repositories/restaurant_repository.dart';
 
 abstract class GetRestaurantUseCase {
-  Future<Either<Failure, Restaurant>> call();
+  Future<Either<Failure, Restaurant>> call(String id);
 }
 
 class GetRestaurantUseCaseImpl extends GetRestaurantUseCase {
-  GetRestaurantUseCaseImpl(this.restaurantCategoryRepository);
+  GetRestaurantUseCaseImpl(this.restaurantRepository);
 
-  final RestaurantRepository restaurantCategoryRepository;
+  final RestaurantRepository restaurantRepository;
 
   @override
-  Future<Either<Failure, Restaurant>> call() async {
-    return restaurantCategoryRepository.getRestaurantCategory();
+  Future<Either<Failure, Restaurant>> call(String id) async {
+    return restaurantRepository.getRestaurantById(id);
   }
 }

@@ -1,4 +1,10 @@
-part of 'restaurant_bloc.dart';
+abstract class RestaurantEvent {
+  const RestaurantEvent();
+}
 
-@immutable
-abstract class RestaurantEvent {}
+class LoadDataEvent extends RestaurantEvent {
+  LoadDataEvent(
+    this.restaurantId,
+  );
+  final String restaurantId;
+}

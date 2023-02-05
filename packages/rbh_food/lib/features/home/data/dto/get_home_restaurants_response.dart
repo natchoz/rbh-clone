@@ -1,29 +1,29 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'get_restaurant_category_response.g.dart';
+part 'get_home_restaurants_response.g.dart';
 
 @JsonSerializable()
-class GetRestaurantCategoryResponse {
-  GetRestaurantCategoryResponse(
+class GetHomeRestaurantsResponse {
+  GetHomeRestaurantsResponse(
     this.recommendedRestaurants,
     this.bestChineseRestaurants,
   );
 
-  factory GetRestaurantCategoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetRestaurantCategoryResponseFromJson(json);
+  factory GetHomeRestaurantsResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetHomeRestaurantsResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GetRestaurantCategoryResponseToJson(this);
+  Map<String, dynamic> toJson() => _$GetHomeRestaurantsResponseToJson(this);
 
   @JsonKey(name: 'recommended_restaurants')
-  final List<RestaurantDto> recommendedRestaurants;
+  final List<HomeRestaurantDto> recommendedRestaurants;
 
   @JsonKey(name: 'best_chinese_restaurants')
-  final List<RestaurantDto> bestChineseRestaurants;
+  final List<HomeRestaurantDto> bestChineseRestaurants;
 }
 
 @JsonSerializable()
-class RestaurantDto {
-  RestaurantDto({
+class HomeRestaurantDto {
+  HomeRestaurantDto({
     required this.id,
     required this.name,
     this.description,
@@ -33,10 +33,10 @@ class RestaurantDto {
     required this.categoryMenus,
   });
 
-  factory RestaurantDto.fromJson(Map<String, dynamic> json) =>
-      _$RestaurantDtoFromJson(json);
+  factory HomeRestaurantDto.fromJson(Map<String, dynamic> json) =>
+      _$HomeRestaurantDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RestaurantDtoToJson(this);
+  Map<String, dynamic> toJson() => _$HomeRestaurantDtoToJson(this);
 
   @JsonKey(name: 'id')
   final String id;

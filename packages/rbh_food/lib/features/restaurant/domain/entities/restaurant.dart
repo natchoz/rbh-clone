@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:rbh_food/features/restaurant/domain/entities/category.dart';
+import 'package:rbh_food/features/restaurant/domain/entities/category_menu.dart';
 
 @immutable
 class Restaurant extends Equatable {
@@ -20,7 +20,7 @@ class Restaurant extends Equatable {
   final String? imageUrl;
   final String? distance;
   final double? rating;
-  final List<Category> categoryMenus;
+  final List<CategoryMenu> categoryMenus;
 
   @override
   List<Object?> get props => [];

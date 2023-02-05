@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:rbh_food/features/home/domain/entities/restaurant.dart';
+import 'package:rbh_food/features/home/domain/entities/home_restaurant.dart';
 import 'package:rbh_food/features/home/domain/entities/restaurant_category.dart';
 import 'package:rbh_food/features/home/presentation/bloc/food_bloc.dart';
 import 'package:rbh_food/features/home/presentation/bloc/food_event.dart';
@@ -20,38 +20,38 @@ class FoodHomePage extends StatelessWidget {
     print("--- build # ENTER ---");
 
     return Scaffold(
-        body: SingleChildScrollView(
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BlocBuilder<FoodBloc, FoodState>(
-            bloc: Modular.get<FoodBloc>()..add(LoadDataEvent()),
-            builder: (context, state) {
-              if (state is Loading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is Success) {
-                return Column(
-                  children: [
-                    _buildRecommendedRestaurants(
-                        state.restaurantCategory.recommendedRestaurants),
-                    SizedBox(
-                      height: 48,
+      body: BlocBuilder<FoodBloc, FoodState>(
+          bloc: Modular.get<FoodBloc>()..add(LoadDataEvent()),
+          builder: (context, state) {
+            if (state is Loading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is Success) {
+              return SingleChildScrollView(
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        _buildRecommendedRestaurants(
+                            state.restaurantCategory.recommendedRestaurants),
+                        SizedBox(
+                          height: 48,
+                        ),
+                        _buildTopRestaurants(
+                            state.restaurantCategory.bestChineseRestaurants),
+                      ],
                     ),
-                    _buildTopRestaurants(
-                        state.restaurantCategory.bestChineseRestaurants),
-                  ],
-                );
-              } else {
-                return Container();
-              }
-            },
-          ),
-        ),
-      ),
-    ));
+                  ),
+                ),
+              );
+            } else {
+              return Container();
+            }
+          }),
+    );
   }
 
-  Widget _buildRecommendedRestaurants(List<Restaurant> data) {
+  Widget _buildRecommendedRestaurants(List<HomeRestaurant> data) {
     return Column(
       children: [
         const RestaurantCategoryTitle("Recommended For You"),
@@ -63,8 +63,9 @@ class FoodHomePage extends StatelessWidget {
                 .map(
                   (restaurant) => GestureDetector(
                     child: ProductCard(
-                      imageUrl: (restaurant.imageUrl?.isNotEmpty ?? false) ? restaurant.imageUrl! :
-                          "https://images.pexels.com/photos/1108104/pexels-photo-1108104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                      imageUrl: (restaurant.imageUrl?.isNotEmpty ?? false)
+                          ? restaurant.imageUrl!
+                          : "https://images.pexels.com/photos/1108104/pexels-photo-1108104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
                       width: 150,
                       height: 150,
                       title: restaurant.name,
@@ -73,7 +74,7 @@ class FoodHomePage extends StatelessWidget {
                     onTap: () {
                       print("--- Go to details ---");
                       Modular.to
-                          .pushNamed("./restaruant", arguments: restaurant);
+                          .pushNamed("./restaruant", arguments: restaurant.id);
                     },
                   ),
                 )
@@ -84,7 +85,7 @@ class FoodHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildTopRestaurants(List<Restaurant> data) {
+  Widget _buildTopRestaurants(List<HomeRestaurant> data) {
     print("--- _buildTopRestaurants # ENTER ---");
 
     return Column(

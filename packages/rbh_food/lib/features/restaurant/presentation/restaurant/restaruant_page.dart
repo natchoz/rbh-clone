@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:rbh_food/features/home/domain/entities/restaurant.dart';
+import 'package:rbh_food/features/restaurant/domain/entities/category_menu.dart';
+import 'package:rbh_food/features/restaurant/domain/entities/restaurant.dart';
+import 'package:rbh_food/features/restaurant/presentation/restaurant/bloc/restaurant_bloc.dart';
+import 'package:rbh_food/features/restaurant/presentation/restaurant/bloc/restaurant_event.dart';
+import 'package:rbh_food/features/restaurant/presentation/restaurant/bloc/restaurant_state.dart';
+import 'package:rbh_food/features/restaurant/presentation/restaurant/widgets/menu_card.dart';
 import 'package:rbh_food/features/restaurant/presentation/restaurant/widgets/menu_category_item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class RestaruantPage extends StatelessWidget {
   const RestaruantPage({
-    required this.restaurant,
+    required this.restaurantId,
     super.key,
   });
 
-  final Restaurant restaurant;
+  final String restaurantId;
 
   static const String routeName = "/restaruant";
 
@@ -19,18 +24,29 @@ class RestaruantPage extends StatelessWidget {
     print("--- RestaruantPage ---");
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          _buildRestaurantAppBar(),
-          _buildRestaurantInfo(),
-          _buildCategories(),
-          _buildCategoryItem(),
-        ],
+      body: BlocBuilder<RestaurantBloc, RestaurantState>(
+        bloc: Modular.get<RestaurantBloc>()..add(LoadDataEvent(restaurantId)),
+        builder: (context, state) {
+          if (state is Loading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is Success) {
+            return CustomScrollView(
+              slivers: [
+                _buildRestaurantAppBar(state.restaurant),
+                _buildRestaurantInfo(state.restaurant),
+                _buildCategories(state.restaurant),
+                _buildCategoryItem(state.restaurant.categoryMenus),
+              ],
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }
 
-  Widget _buildRestaurantAppBar() {
+  Widget _buildRestaurantAppBar(Restaurant restaurant) {
     return SliverAppBar(
       expandedHeight: 200,
       flexibleSpace: FlexibleSpaceBar(
@@ -42,21 +58,21 @@ class RestaruantPage extends StatelessWidget {
     );
   }
 
-  Widget _buildRestaurantInfo() {
+  Widget _buildRestaurantInfo(Restaurant restaurant) {
     return SliverToBoxAdapter();
   }
 
-  Widget _buildCategories() {
+  Widget _buildCategories(Restaurant restaurant) {
     return SliverToBoxAdapter(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: restaurant.categoryMenus
               .map(
-                (title) => Padding(
+                (category) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                    child: Text(title),
+                    child: Text(category.name),
                     onPressed: () {},
                   ),
                 ),
@@ -67,12 +83,23 @@ class RestaruantPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryItem() {
-    return SliverList(delegate: SliverChildBuilderDelegate(
-      (context, index) {
-        return MenuCategoryItem();
-      },
-    ));
+  Widget _buildCategoryItem(List<CategoryMenu> categoryMenus) {
+    return SliverList(
+        delegate: SliverChildBuilderDelegate((context, index) {
+      return MenuCategoryItem(
+        title: categoryMenus[index].name,
+        items: categoryMenus[index]
+            .menus
+            .map((menu) => Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: MenuCard(
+                  image: menu.imageUrl,
+                  title: menu.name,
+                  price: menu.price.toDouble()),
+            ))
+            .toList(),
+      );
+    }, childCount: categoryMenus.length));
   }
 
   Widget _buildMenu() {

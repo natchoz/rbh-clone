@@ -19,7 +19,7 @@ class _RestaurantApi implements RestaurantApi {
   String? baseUrl;
 
   @override
-  Future<GetRestaurantsResponse> getRestaurantsResponse() async {
+  Future<GetRestaurantsResponse> getRestaurants() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -38,6 +38,29 @@ class _RestaurantApi implements RestaurantApi {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetRestaurantsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<RestaurantDto> getRestaurant(id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<RestaurantDto>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/restaurant/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RestaurantDto.fromJson(_result.data!);
     return value;
   }
 

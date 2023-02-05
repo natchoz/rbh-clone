@@ -1,31 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_restaurant_category_response.dart';
+part of 'get_home_restaurants_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetRestaurantCategoryResponse _$GetRestaurantCategoryResponseFromJson(
+GetHomeRestaurantsResponse _$GetHomeRestaurantsResponseFromJson(
         Map<String, dynamic> json) =>
-    GetRestaurantCategoryResponse(
+    GetHomeRestaurantsResponse(
       (json['recommended_restaurants'] as List<dynamic>)
-          .map((e) => RestaurantDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => HomeRestaurantDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['best_chinese_restaurants'] as List<dynamic>)
-          .map((e) => RestaurantDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => HomeRestaurantDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$GetRestaurantCategoryResponseToJson(
-        GetRestaurantCategoryResponse instance) =>
+Map<String, dynamic> _$GetHomeRestaurantsResponseToJson(
+        GetHomeRestaurantsResponse instance) =>
     <String, dynamic>{
       'recommended_restaurants': instance.recommendedRestaurants,
       'best_chinese_restaurants': instance.bestChineseRestaurants,
     };
 
-RestaurantDto _$RestaurantDtoFromJson(Map<String, dynamic> json) =>
-    RestaurantDto(
+HomeRestaurantDto _$HomeRestaurantDtoFromJson(Map<String, dynamic> json) =>
+    HomeRestaurantDto(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String?,
@@ -37,7 +37,7 @@ RestaurantDto _$RestaurantDtoFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$RestaurantDtoToJson(RestaurantDto instance) =>
+Map<String, dynamic> _$HomeRestaurantDtoToJson(HomeRestaurantDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
