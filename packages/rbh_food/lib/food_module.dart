@@ -12,6 +12,8 @@ import 'package:rbh_food/features/restaurant/data/mapper/restaruant_mapper.dart'
 import 'package:rbh_food/features/restaurant/data/repositories/restaurant_repository_impl.dart';
 import 'package:rbh_food/features/restaurant/domain/repositories/restaurant_repository.dart';
 import 'package:rbh_food/features/restaurant/domain/usecases/get_restaurant_use_case.dart';
+import 'package:rbh_food/features/restaurant/presentation/menu_details/bloc/menu_details_bloc.dart';
+import 'package:rbh_food/features/restaurant/presentation/menu_details/menu_details_page.dart';
 import 'package:rbh_food/features/restaurant/presentation/restaurant/bloc/restaurant_bloc.dart';
 import 'package:rbh_food/features/restaurant/presentation/restaurant/restaruant_page.dart';
 
@@ -40,6 +42,7 @@ class FoodModule extends Module {
         // bloc
         Bind.factory((i) => FoodBloc(i())),
         Bind.factory((i) => RestaurantBloc(i())),
+        Bind.factory((i) => MenuDetailsBloc()),
       ];
 
   @override
@@ -51,6 +54,10 @@ class FoodModule extends Module {
         ChildRoute(
           '/restaruant',
           child: (context, args) => RestaruantPage(restaurantId: args.data),
+        ),
+        ChildRoute(
+          '/menu',
+          child: (context, args) => MenuDetailsPage(menu: args.data),
         ),
       ];
 }

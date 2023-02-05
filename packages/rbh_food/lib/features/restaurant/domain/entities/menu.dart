@@ -5,6 +5,7 @@ class Menu {
     required this.imageUrl,
     required this.price,
     required this.active,
+    this.description,
   });
 
   final String id;
@@ -12,4 +13,5 @@ class Menu {
   final String imageUrl;
   final double price;
   final bool active;
+  final String? description;
 }

@@ -12,14 +12,16 @@
             "name": "Set1 ข้าวหน้าเนื้อวากิว",
             "imageUrl": "https://raw.githubusercontent.com/natchoz/rbh-api/main/images/wagyu_don.jpeg",
             "price": 139,
-            "active": true
+            "active": true,
+            "description": "[description] Set1 ข้าวหน้าเนื้อวากิว"
           },
           {
             "id": "2",
             "name": "Set2 ชุดเบนโตะหมู",
             "imageUrl": "https://images.pexels.com/photos/3297367/pexels-photo-3297367.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
             "price": 159,
-            "active": true
+            "active": true,
+            "description": "[description] Set2 ชุดเบนโตะหมู"
           }
         ]
       },
@@ -32,7 +34,8 @@
             "name": "Set 1 แถม 1",
             "imageUrl": "",
             "price": 119,
-            "active": true
+            "active": true,
+            "description": "[description] Set 1 แถม 1"
           }
         ]
       },
@@ -45,14 +48,16 @@
             "name": "Set A กุ้งดองซีอิ๊วญี่ปุ่น",
             "imageUrl": "https://raw.githubusercontent.com/natchoz/rbh-api/main/images/shrimp_shoyu.jpeg",
             "price": 199,
-            "active": true
+            "active": true,
+            "description": ""
           },
           {
             "id": "5",
             "name": "Set ฺB แซลมอนดองซีอิ๊วญี่ปุ่น",
             "imageUrl": "https://raw.githubusercontent.com/natchoz/rbh-api/main/images/salmon_shoyu.jpeg",
             "price": 249,
-            "active": true
+            "active": true,
+            "description": ""
           }
         ]
       },
@@ -65,14 +70,16 @@
             "name": "ข้าวผัดแซลมอน ไข่ดอง",
             "imageUrl": "",
             "price": 99,
-            "active": true
+            "active": true,
+            "description": ""
           },
           {
             "id": "7",
             "name": "ข้าวหน้าเนื้อวากิวภูเขาไฟ",
             "imageUrl": "",
             "price": 149,
-            "active": true
+            "active": true,
+            "description": ""
           }
         ]
       },
@@ -85,14 +92,16 @@
             "name": "ชุดเบนโตะหมูทงคัตสึ",
             "imageUrl": "",
             "price": 119,
-            "active": true
+            "active": true,
+            "description": ""
           },
           {
             "id": "9",
             "name": "ชุดเบนโตะสเต็กแซลมอนย่างซีอิ๊ว",
             "imageUrl": "",
             "price": 179,
-            "active": true
+            "active": true,
+            "description": ""
           }
         ]
       }

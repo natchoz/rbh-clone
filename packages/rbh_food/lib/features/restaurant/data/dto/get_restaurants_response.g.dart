@@ -65,6 +65,7 @@ MenuDto _$MenuDtoFromJson(Map<String, dynamic> json) => MenuDto(
       imageUrl: json['imageUrl'] as String,
       price: (json['price'] as num).toDouble(),
       active: json['active'] as bool,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$MenuDtoToJson(MenuDto instance) => <String, dynamic>{
@@ -73,4 +74,5 @@ Map<String, dynamic> _$MenuDtoToJson(MenuDto instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'price': instance.price,
       'active': instance.active,
+      'description': instance.description,
     };

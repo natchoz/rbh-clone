@@ -29,8 +29,8 @@ class RestaruantPage extends StatelessWidget {
         builder: (context, state) {
           if (state is Loading) {
             return const Center(child: CircularProgressIndicator());
-          } 
-          
+          }
+
           if (state is Success) {
             return CustomScrollView(
               slivers: [
@@ -115,9 +115,13 @@ class RestaruantPage extends StatelessWidget {
               .map((menu) => Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: MenuCard(
-                        image: menu.imageUrl,
-                        title: menu.name,
-                        price: menu.price.toDouble()),
+                      image: menu.imageUrl,
+                      title: menu.name,
+                      price: menu.price.toDouble(),
+                      onTab: () {
+                        Modular.to.pushNamed("./menu", arguments: menu);
+                      },
+                    ),
                   ))
               .toList(),
         );

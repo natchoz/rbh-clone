@@ -85,6 +85,7 @@ class MenuDto {
     required this.imageUrl,
     required this.price,
     required this.active,
+    this.description,
   });
 
   factory MenuDto.fromJson(Map<String, dynamic> json) =>
@@ -106,4 +107,7 @@ class MenuDto {
 
   @JsonKey(name: 'active')
   final bool active;
+
+  @JsonKey(name: 'description')
+  final String? description;
 }

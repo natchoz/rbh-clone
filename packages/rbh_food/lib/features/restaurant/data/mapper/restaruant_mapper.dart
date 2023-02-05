@@ -32,6 +32,7 @@ class RestaurantMapper {
             imageUrl: dto.imageUrl,
             price: dto.price,
             active: dto.active,
+            description: dto.description
           ))
       .toList();
 }
