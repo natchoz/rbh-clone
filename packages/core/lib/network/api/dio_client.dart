@@ -32,23 +32,40 @@ class MockInterceptor extends Interceptor {
     final resourcePath = _jsonDir + options.path + _jsonExtension;
     print("--- resourcePath: $resourcePath ---");
 
-    final data = await rootBundle.load(resourcePath);
-    final map = json.decode(
-      utf8.decode(
-        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
-      ),
-    );
+    try {
+      final data = await rootBundle.load(resourcePath);
+      final map = json.decode(
+        utf8.decode(
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
+        ),
+      );
 
-    return Future.delayed(
-      const Duration(milliseconds: 500),
-      () {
-        handler.resolve(Response(
-          requestOptions: options,
-          data: map,
-          statusCode: 200,
-        ));
-      },
-    );
+      return Future.delayed(
+        const Duration(milliseconds: 500),
+        () {
+          handler.resolve(Response(
+            requestOptions: options,
+            data: map,
+            statusCode: 200,
+          ));
+        },
+      );
+    } catch (e) {
+      print("--- error: $e ---");
+
+      return Future.delayed(
+        const Duration(milliseconds: 500),
+        () {
+          handler.reject(DioError(
+              requestOptions: options,
+              type: DioErrorType.response,
+              response: Response(
+                  requestOptions: options,
+                  statusCode: 404,
+                  statusMessage: e.toString())));
+        },
+      );
+    }
 
     // return handler.resolve(Response(
     //   requestOptions: options,

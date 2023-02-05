@@ -11,6 +11,7 @@ class RbhApp extends StatelessWidget {
       designSize: const Size(360, 690),
       builder: ((context, child) {
         return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           routeInformationParser: Modular.routeInformationParser,
           routerDelegate: Modular.routerDelegate,
         );

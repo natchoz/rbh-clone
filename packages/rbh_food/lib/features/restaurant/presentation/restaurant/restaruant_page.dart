@@ -29,7 +29,9 @@ class RestaruantPage extends StatelessWidget {
         builder: (context, state) {
           if (state is Loading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state is Success) {
+          } 
+          
+          if (state is Success) {
             return CustomScrollView(
               slivers: [
                 _buildRestaurantAppBar(state.restaurant),
@@ -49,10 +51,28 @@ class RestaruantPage extends StatelessWidget {
   Widget _buildRestaurantAppBar(Restaurant restaurant) {
     return SliverAppBar(
       expandedHeight: 200,
+      pinned: true,
+      elevation: 0,
+      backgroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
         background: Image.network(
           restaurant.imageUrl ?? "",
           fit: BoxFit.cover,
+        ),
+      ),
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+          onTap: () {
+            Modular.to.pop();
+          },
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.black,
+            ),
+          ),
         ),
       ),
     );
@@ -84,22 +104,25 @@ class RestaruantPage extends StatelessWidget {
   }
 
   Widget _buildCategoryItem(List<CategoryMenu> categoryMenus) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-      return MenuCategoryItem(
-        title: categoryMenus[index].name,
-        items: categoryMenus[index]
-            .menus
-            .map((menu) => Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: MenuCard(
-                  image: menu.imageUrl,
-                  title: menu.name,
-                  price: menu.price.toDouble()),
-            ))
-            .toList(),
-      );
-    }, childCount: categoryMenus.length));
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      sliver: SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+        return MenuCategoryItem(
+          title: categoryMenus[index].name,
+          items: categoryMenus[index]
+              .menus
+              .map((menu) => Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: MenuCard(
+                        image: menu.imageUrl,
+                        title: menu.name,
+                        price: menu.price.toDouble()),
+                  ))
+              .toList(),
+        );
+      }, childCount: categoryMenus.length)),
+    );
   }
 
   Widget _buildMenu() {
