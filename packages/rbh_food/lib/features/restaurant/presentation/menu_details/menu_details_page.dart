@@ -7,14 +7,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rbh_food/features/restaurant/presentation/menu_details/bloc/menu_details_bloc.dart';
+import 'package:rbh_food/features/restaurant/presentation/menu_details/bloc/menu_details_event.dart';
+import 'package:rbh_food/features/restaurant/presentation/menu_details/bloc/menu_details_state.dart';
 
-class MenuDetailsPage extends StatelessWidget {
+class MenuDetailsPage extends StatefulWidget {
   const MenuDetailsPage({
     super.key,
     required this.menu,
   });
 
   final Menu menu;
+
+  @override
+  State<MenuDetailsPage> createState() => _MenuDetailsPageState();
+}
+
+class _MenuDetailsPageState extends State<MenuDetailsPage> {
+  late MenuDetailsBloc _menuDetailsBloc;
+  Menu get _menu => widget.menu;
+
+  @override
+  void initState() {
+    _menuDetailsBloc = Modular.get<MenuDetailsBloc>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +48,8 @@ class MenuDetailsPage extends StatelessWidget {
   Widget _buildAppBar() {
     return SliverAppBar(
       title: Text(
-        menu.name,
-        style: TextStyle(color: Colors.black),
+        _menu.name,
+        style: const TextStyle(color: Colors.black),
       ),
       backgroundColor: Colors.white,
       leading: Padding(
@@ -42,7 +58,7 @@ class MenuDetailsPage extends StatelessWidget {
           onTap: () {
             Modular.to.pop();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: Colors.black,
           ),
@@ -61,7 +77,7 @@ class MenuDetailsPage extends StatelessWidget {
             CachedNetworkImage(
               height: 150,
               fit: BoxFit.fitWidth,
-              imageUrl: menu.imageUrl,
+              imageUrl: _menu.imageUrl,
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -74,31 +90,31 @@ class MenuDetailsPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          menu.name,
-                          style: TextStyle(
+                          _menu.name,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 24),
                         ),
                         flex: 2,
                       ),
                       const Spacer(),
                       Text(
-                        RbhUtils.convertDisplayPrice(menu.price),
-                        style: TextStyle(
+                        RbhUtils.convertDisplayPrice(_menu.price),
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 24),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 48,
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Text(
-                    menu.description ?? "",
+                    _menu.description ?? "",
                     style: TextStyle(color: Colors.grey.shade600),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 48,
                   ),
                   _buildNote(),
@@ -115,11 +131,11 @@ class MenuDetailsPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           "Additional requests (if any)",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        SizedBox(
+        const SizedBox(
           height: 24,
         ),
         TextField(
@@ -146,70 +162,72 @@ class MenuDetailsPage extends StatelessWidget {
   }
 
   Widget _buildAddMenuButtons() {
-    return SliverToBoxAdapter(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return BlocBuilder<MenuDetailsBloc, MenuDetailsState>(
+      bloc: _menuDetailsBloc,
+      builder: (context, state) {
+        return SliverToBoxAdapter(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              IconButton(
-                splashRadius: 32,
-                iconSize: 48,
-                onPressed: () {},
-                icon: Icon(
-                  Icons.remove_circle_outline,
-                  // size: 48,
-                  color: Colors.purple,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    color: Colors.purple,
+                    splashRadius: 32,
+                    iconSize: 48,
+                    disabledColor: Colors.grey,
+                    onPressed: state is EmptyBasket
+                        ? null
+                        : () {
+                            _menuDetailsBloc.add(RemoveMenuEvent());
+                          },
+                    icon: const Icon(
+                      Icons.remove_circle_outline,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      state.count.toString(),
+                      style:
+                          const TextStyle(fontSize: 32, color: Colors.purple),
+                    ),
+                  ),
+                  IconButton(
+                    splashRadius: 32,
+                    iconSize: 48,
+                    onPressed: () {
+                      _menuDetailsBloc.add(AddMenuEvent());
+                    },
+                    icon: const Icon(
+                      Icons.add_circle_outline,
+                      // size: 48,
+                      color: Colors.purple,
+                    ),
+                  ),
+                ],
               ),
-
-              // InkWell(
-              //   borderRadius: BorderRadius.circular(16),
-              //   onTap: () {},
-              //   child: Icon(
-              //     Icons.remove_circle_outline,
-              //     size: 48,
-              //     color: Colors.purple,
-              //   ),
-              // ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  "1",
-                  style: TextStyle(fontSize: 32, color: Colors.purple),
-                ),
+              const SizedBox(
+                height: 32,
               ),
-              IconButton(
-                splashRadius: 32,
-                iconSize: 48,
+              // Spacer(),
+              ElevatedButton(
                 onPressed: () {},
-                icon: Icon(
-                  Icons.add_circle_outline,
-                  // size: 48,
-                  color: Colors.purple,
+                child: const Text(
+                  "Add to Basket",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32)),
+                  backgroundColor: Colors.purple,
                 ),
               ),
             ],
           ),
-          SizedBox(
-            height: 32,
-          ),
-          // Spacer(),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Add to Basket",
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32)),
-              backgroundColor: Colors.purple,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

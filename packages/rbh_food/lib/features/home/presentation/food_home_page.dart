@@ -25,24 +25,17 @@ class FoodHomePage extends StatelessWidget {
           builder: (context, state) {
             if (state is Loading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state is Success) {
-              return SingleChildScrollView(
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        _buildRecommendedRestaurants(
-                            state.restaurantCategory.recommendedRestaurants),
-                        SizedBox(
-                          height: 48,
-                        ),
-                        _buildTopRestaurants(
-                            state.restaurantCategory.bestChineseRestaurants),
-                      ],
-                    ),
-                  ),
-                ),
+            }
+
+            if (state is Success) {
+              return CustomScrollView(
+                slivers: [
+                  _buildAppBar(),
+                  _buildRecommendedRestaurants(
+                      state.restaurantCategory.recommendedRestaurants),
+                  _buildTopRestaurants(
+                      state.restaurantCategory.bestChineseRestaurants),
+                ],
               );
             } else {
               return Container();
@@ -51,67 +44,90 @@ class FoodHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildRecommendedRestaurants(List<HomeRestaurant> data) {
-    return Column(
-      children: [
-        const RestaurantCategoryTitle("Recommended For You"),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: data
-                .map(
-                  (restaurant) => GestureDetector(
-                    child: ProductCard(
-                      imageUrl: (restaurant.imageUrl?.isNotEmpty ?? false)
-                          ? restaurant.imageUrl!
-                          : "https://images.pexels.com/photos/1108104/pexels-photo-1108104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                      width: 150,
-                      height: 150,
-                      title: restaurant.name,
-                      description: restaurant.description,
-                    ),
-                    onTap: () {
-                      print("--- Go to details ---");
-                      Modular.to
-                          .pushNamed("./restaruant", arguments: restaurant.id);
-                    },
-                  ),
-                )
-                .toList(),
+  Widget _buildAppBar() {
+    return SliverAppBar(
+      // elevation: 0,
+      backgroundColor: Colors.white,
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: IconButton(
+          onPressed: () {
+            Modular.to.pop();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
           ),
         ),
-      ],
+      ),
+    );
+  }
+
+  Widget _buildRecommendedRestaurants(List<HomeRestaurant> data) {
+    return SliverToBoxAdapter(
+      child: Column(
+        children: [
+          const RestaurantCategoryTitle("Recommended For You"),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: data
+                  .map(
+                    (restaurant) => GestureDetector(
+                      child: ProductCard(
+                        imageUrl: (restaurant.imageUrl?.isNotEmpty ?? false)
+                            ? restaurant.imageUrl!
+                            : "https://images.pexels.com/photos/1108104/pexels-photo-1108104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                        width: 150,
+                        height: 150,
+                        title: restaurant.name,
+                        description: restaurant.description,
+                      ),
+                      onTap: () {
+                        print("--- Go to details ---");
+                        Modular.to.pushNamed("./restaruant",
+                            arguments: restaurant.id);
+                      },
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildTopRestaurants(List<HomeRestaurant> data) {
     print("--- _buildTopRestaurants # ENTER ---");
 
-    return Column(
-      children: [
-        RestaurantCategoryTitle("Top Restaurants"),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: data
-                .map(
-                  (restaurant) => ProductCard(
-                    imageUrl:
-                        "https://images.pexels.com/photos/1108104/pexels-photo-1108104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                    width: 150,
-                    height: 150,
-                    title: restaurant.name,
-                    description: restaurant.description,
-                    distance: restaurant.distance,
-                    rating: restaurant.rating,
-                  ),
-                )
-                .toList(),
+    return SliverToBoxAdapter(
+      child: Column(
+        children: [
+          RestaurantCategoryTitle("Top Restaurants"),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: data
+                  .map(
+                    (restaurant) => ProductCard(
+                      imageUrl:
+                          "https://images.pexels.com/photos/1108104/pexels-photo-1108104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                      width: 150,
+                      height: 150,
+                      title: restaurant.name,
+                      description: restaurant.description,
+                      distance: restaurant.distance,
+                      rating: restaurant.rating,
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
