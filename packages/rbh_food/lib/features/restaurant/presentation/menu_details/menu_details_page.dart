@@ -180,7 +180,7 @@ class _MenuDetailsPageState extends State<MenuDetailsPage> {
                     onPressed: state is EmptyBasket
                         ? null
                         : () {
-                            _menuDetailsBloc.add(RemoveMenuEvent());
+                            _menuDetailsBloc.add(RemoveMenuEvent(_menu.price));
                           },
                     icon: const Icon(
                       Icons.remove_circle_outline,
@@ -198,7 +198,7 @@ class _MenuDetailsPageState extends State<MenuDetailsPage> {
                     splashRadius: 32,
                     iconSize: 48,
                     onPressed: () {
-                      _menuDetailsBloc.add(AddMenuEvent());
+                      _menuDetailsBloc.add(AddMenuEvent(_menu.price));
                     },
                     icon: const Icon(
                       Icons.add_circle_outline,
@@ -213,9 +213,14 @@ class _MenuDetailsPageState extends State<MenuDetailsPage> {
               ),
               // Spacer(),
               ElevatedButton(
-                onPressed: () {},
-                child: const Text(
-                  "Add to Basket",
+                onPressed: () {
+                  // _menuDetailsBloc.add(AddToBasketEvent());
+                  Modular.to.pop();
+                },
+                child: Text(
+                  state is EmptyBasket
+                      ? "Remove"
+                      : "Add to Basket ${RbhUtils.convertDisplayPrice(state.count * _menu.price)}",
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 style: ElevatedButton.styleFrom(

@@ -17,7 +17,7 @@ class DioClient {
       contentType: Headers.jsonContentType,
     );
     final dio = Dio(options);
-    dio.interceptors.add(MockInterceptor());
+    // dio.interceptors.add(MockInterceptor());
     return dio;
   }
 }

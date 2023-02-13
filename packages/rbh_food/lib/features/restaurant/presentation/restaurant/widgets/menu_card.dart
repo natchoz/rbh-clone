@@ -1,14 +1,15 @@
 import 'package:core/utils/rbh_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MenuCard extends StatelessWidget {
-  const MenuCard({
-    Key? key,
-    required this.image,
-    required this.title,
-    required this.price,
-    this.onTab
-  }) : super(key: key);
+  const MenuCard(
+      {Key? key,
+      required this.image,
+      required this.title,
+      required this.price,
+      this.onTab})
+      : super(key: key);
 
   final String image, title;
   final double price;
@@ -30,7 +31,8 @@ class MenuCard extends StatelessWidget {
                   Radius.circular(16),
                 ),
                 image: DecorationImage(
-                  image: NetworkImage(image),
+                  // image: NetworkImage(image),
+                  image: CachedNetworkImageProvider(image),
                   fit: BoxFit.cover,
                 ),
               ),
